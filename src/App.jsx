@@ -7,15 +7,13 @@ function App() {
   const [backgroundColor, setBackgroundColor] = useState(COLORS[0])
   const [renders, setRenders] = useState(-1)
   const [person, setPerson] = useState({ name: "John", age: 100})
+  const [value, setValue] = useState('')
+
+  console.log("input value:", value)
 
   const handleIncreaseAge = () => {
-    console.log("in handleIncreaseAge (before setPerson call): ", person)
-    
     setPerson({ ...person, age: person.age + 1 })
-    console.log("in handleIncreaseAge (after setPerson call): ", person)
   }
-
-  console.log("during render: ", person)
 
   const handleDecreaseAge = () => {
     const newYoungerPerson = { ...person, age: person.age - 1}
@@ -42,7 +40,11 @@ function App() {
       <h2>{person.age}</h2>
       <button onClick={handleIncreaseAge}>Increase age</button>
       <button onClick={handleDecreaseAge}>Decrease age</button>
-
+      <input 
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
       <div
         className='App'
         style={{
