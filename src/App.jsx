@@ -7,9 +7,8 @@ function App() {
   const [backgroundColor, setBackgroundColor] = useState(COLORS[0])
   const [renders, setRenders] = useState(-1)
   const [person, setPerson] = useState({ name: "John", age: 100})
-  const [value, setValue] = useState('')
-
-  console.log("input value:", value)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
 
   const handleIncreaseAge = () => {
     setPerson({ ...person, age: person.age + 1 })
@@ -42,9 +41,15 @@ function App() {
       <button onClick={handleDecreaseAge}>Decrease age</button>
       <input 
         type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
       />
+      <input 
+        type="text"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+      />
+      {firstName} {lastName}
       <div
         className='App'
         style={{
