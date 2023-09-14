@@ -6,6 +6,17 @@ const COLORS = ["pink", "green", "blue", "yellow", "purple"]
 function App() {
   const [backgroundColor, setBackgroundColor] = useState(COLORS[0])
   const [renders, setRenders] = useState(-1)
+  const [person, setPerson] = useState({ name: "John", age: 100})
+
+  const handleIncreaseAge = () => {
+    const newPerson = { ...person, age: person.age + 1 }
+    setPerson(newPerson)
+  }
+
+  const handleDecreaseAge = () => {
+    const newYoungerPerson = { ...person, age: person.age - 1}
+    setPerson(newYoungerPerson)
+  }
 
   const onButtonClick = (color) => () => {
     setBackgroundColor(color)
@@ -21,7 +32,12 @@ function App() {
 
   return (
     <>
-      <div>Number of Rerenders: {renders}</div>
+      <div>Number of Background Rerenders: {renders}</div>
+      
+      <h1>{person.name}</h1>
+      <h2>{person.age}</h2>
+      <button onClick={handleIncreaseAge}>Increase age</button>
+      <button onClick={handleDecreaseAge}>Decrease age</button>
 
       <div
         className='App'
