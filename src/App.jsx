@@ -9,9 +9,13 @@ function App() {
   const [person, setPerson] = useState({ name: "John", age: 100})
 
   const handleIncreaseAge = () => {
-    const newPerson = { ...person, age: person.age + 1 }
-    setPerson(newPerson)
+    console.log("in handleIncreaseAge (before setPerson call): ", person)
+    
+    setPerson({ ...person, age: person.age + 1 })
+    console.log("in handleIncreaseAge (after setPerson call): ", person)
   }
+
+  console.log("during render: ", person)
 
   const handleDecreaseAge = () => {
     const newYoungerPerson = { ...person, age: person.age - 1}
