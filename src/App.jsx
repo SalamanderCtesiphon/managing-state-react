@@ -6,7 +6,7 @@ const COLORS = ["pink", "green", "blue", "yellow", "purple"]
 function App() {
   const [backgroundColor, setBackgroundColor] = useState(COLORS[0])
   const [renders, setRenders] = useState(-1)
-  const [person, setPerson] = useState({ name: "John", age: 100})
+  const [person, setPerson] = useState({ firstName: "John", lastName: "Smith", age: 100})
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
 
@@ -27,15 +27,20 @@ function App() {
     setRenders( renders + 1)
   }
 
+  const updatePerson = () => {
+    setPerson({ ...person, firstName: firstName, lastName: lastName})
+  }
+
   useEffect(() => {
     countClicks()
   }, [backgroundColor])
 
+  console.log(person)
   return (
     <>
       <div>Number of Background Rerenders: {renders}</div>
       
-      <h1>{person.name}</h1>
+      <h1>{firstName} {lastName}</h1>
       <h2>{person.age}</h2>
       <button onClick={handleIncreaseAge}>Increase age</button>
       <button onClick={handleDecreaseAge}>Decrease age</button>
@@ -49,7 +54,9 @@ function App() {
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
       />
-      {firstName} {lastName}
+      <button onClick={updatePerson}>update person</button>
+      <p>Name: {firstName} {lastName}</p>
+      <p>age: {person.age}</p>
       <div
         className='App'
         style={{
